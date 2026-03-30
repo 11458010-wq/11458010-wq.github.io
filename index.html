@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>李宥叡 | 作品集首頁</title>
+    <style>
+      :root {
+        --bg-1: #f4efe6;
+        --bg-2: #d8ecf3;
+        --ink: #1e2a2f;
+        --muted: #475d66;
+        --card: rgba(255, 255, 255, 0.78);
+        --line: rgba(30, 42, 47, 0.14);
+        --accent-1: #116466;
+        --accent-2: #d97706;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        background:
+          radial-gradient(circle at 12% 16%, rgba(17, 100, 102, 0.18), transparent 40%),
+          radial-gradient(circle at 85% 12%, rgba(217, 119, 6, 0.16), transparent 38%),
+          linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        overflow-x: hidden;
+      }
+
+      .texture {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.25;
+        background-image: repeating-linear-gradient(
+          45deg,
+          rgba(30, 42, 47, 0.04) 0,
+          rgba(30, 42, 47, 0.04) 1px,
+          transparent 1px,
+          transparent 9px
+        );
+      }
+
+      .container {
+        width: min(760px, 92vw);
+        margin: 0 auto;
+        padding: 1.35rem 0 2rem;
+      }
+
+      .hero {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: clamp(1rem, 3.5vw, 1.6rem);
+        background: var(--card);
+        backdrop-filter: blur(5px);
+        box-shadow: 0 20px 55px rgba(17, 100, 102, 0.12);
+        animation: rise 700ms ease-out both;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-1);
+        padding: 0.28rem 0.58rem;
+        border: 1px solid rgba(17, 100, 102, 0.3);
+        border-radius: 999px;
+        margin-bottom: 0.75rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.5rem, 4.8vw, 2.45rem);
+        line-height: 1.15;
+        font-family: "Noto Serif TC", "PMingLiU", serif;
+      }
+
+      .intro {
+        margin: 0.7rem 0 0;
+        max-width: 62ch;
+        font-size: clamp(0.95rem, 2.45vw, 1.02rem);
+        line-height: 1.72;
+        color: var(--muted);
+      }
+
+      .works {
+        margin-top: 1.35rem;
+      }
+
+      .works h2 {
+        font-size: clamp(1.15rem, 3.7vw, 1.5rem);
+        margin: 0 0 0.75rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 0;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.95rem;
+        box-shadow: 0 12px 30px rgba(30, 42, 47, 0.08);
+        animation: rise 700ms ease-out both;
+      }
+
+      .card:nth-child(2) {
+        animation-delay: 120ms;
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.12rem;
+      }
+
+      .card p {
+        color: var(--muted);
+        margin: 0.55rem 0;
+        line-height: 1.64;
+        font-size: 0.95rem;
+      }
+
+      .card ul {
+        margin: 0.2rem 0 0.85rem;
+        padding-left: 1.1rem;
+        color: var(--muted);
+        line-height: 1.58;
+        font-size: 0.92rem;
+      }
+
+      .card a {
+        text-decoration: none;
+        color: #ffffff;
+        display: inline-block;
+        width: fit-content;
+        background: linear-gradient(120deg, var(--accent-1), #0f766e);
+        padding: 0.48rem 0.86rem;
+        border-radius: 10px;
+        font-size: 0.92rem;
+        transition: transform 180ms ease, filter 180ms ease;
+      }
+
+      .card a[data-type="snake"] {
+        background: linear-gradient(120deg, #b45309, var(--accent-2));
+      }
+
+      .card a:hover,
+      .card a:focus-visible {
+        transform: translateY(-2px);
+        filter: saturate(1.12);
+        outline: none;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: 94vw;
+          padding-top: 1rem;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero,
+        .card {
+          border-radius: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="texture" aria-hidden="true"></div>
+
+    <main class="container">
+      <section class="hero">
+        <span class="tag">Portfolio</span>
+        <h1>資訊一 李宥叡</h1>
+        <p class="intro">
+          你好，我是資訊一的李宥叡。這裡整理了我目前完成的兩個遊戲作品，
+          分別是打地鼠與貪吃蛇。歡迎點擊下方卡片進入遊戲頁面體驗。
+        </p>
+      </section>
+
+      <section class="works" aria-labelledby="works-title">
+        <h2 id="works-title">遊戲作品</h2>
+        <div class="grid">
+          <article class="card">
+            <div>
+              <h3>1. 打地鼠</h3>
+              <p>
+                這款遊戲主打反應力與專注力，畫面上會隨機冒出地鼠，玩家需要在短時間內點擊命中。
+              </p>
+              <ul>
+                <li>核心玩法：地鼠出現位置與時機不固定，越快敲中越能累積高分。</li>
+                <li>挑戰重點：在時間壓力下維持穩定命中率，避免漏打造成分數落後。</li>
+                <li>適合族群：想訓練手眼協調、反應速度與臨場判斷的玩家。</li>
+              </ul>
+            </div>
+            <a href="1/index.html">前往打地鼠</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>2. 貪吃蛇</h3>
+              <p>
+                玩家透過方向控制讓蛇持續前進，吃到食物後身體會變長，遊戲節奏也會越來越緊湊。
+              </p>
+              <ul>
+                <li>核心玩法：規劃路線吃下更多食物，讓分數穩定上升。</li>
+                <li>挑戰重點：蛇身變長後可移動空間變少，需要預判下一步避免自撞。</li>
+                <li>樂趣特色：操作簡單但策略性高，能同時考驗耐心與路徑規劃能力。</li>
+              </ul>
+            </div>
+            <a href="2/index.html" data-type="snake">前往貪吃蛇</a>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -131,6 +131,80 @@
         font-size: 1.12rem;
       }
 
+      .thumb {
+        position: relative;
+        width: 100%;
+        height: 118px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        margin: 0.2rem 0 0.7rem;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      }
+
+      .thumb-label {
+        position: absolute;
+        right: 0.5rem;
+        bottom: 0.45rem;
+        font-size: 0.74rem;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.36);
+        padding: 0.18rem 0.45rem;
+        border-radius: 999px;
+        letter-spacing: 0.02em;
+      }
+
+      .thumb.mole {
+        background:
+          radial-gradient(circle at 14% 88%, #6d4c41 0 17px, transparent 18px),
+          radial-gradient(circle at 50% 88%, #6d4c41 0 17px, transparent 18px),
+          radial-gradient(circle at 86% 88%, #6d4c41 0 17px, transparent 18px),
+          linear-gradient(180deg, #84cc16 0%, #4d7c0f 62%, #3f6212 100%);
+      }
+
+      .thumb.mole::before {
+        content: "\1F43E \6253\5730\9F20";
+        position: absolute;
+        left: 0.55rem;
+        top: 0.5rem;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #f0fdf4;
+        text-shadow: 0 1px 4px rgba(20, 83, 45, 0.45);
+      }
+
+      .thumb.snake {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(160deg, #0f766e, #164e63);
+        background-size: 22px 22px, 22px 22px, auto;
+      }
+
+      .thumb.snake::before {
+        content: "";
+        position: absolute;
+        width: 62%;
+        height: 14px;
+        left: 12%;
+        top: 52%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #bbf7d0, #4ade80);
+        box-shadow: 18px -20px 0 #86efac;
+      }
+
+      .thumb.snake::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        right: 13%;
+        top: 29%;
+        border-radius: 50%;
+        background: #fbbf24;
+        box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.22);
+      }
+
       .card p {
         color: var(--muted);
         margin: 0.55rem 0;
@@ -195,6 +269,10 @@
         .card {
           border-radius: 12px;
         }
+
+        .thumb {
+          height: 102px;
+        }
       }
     </style>
   </head>
@@ -217,6 +295,9 @@
           <article class="card">
             <div>
               <h3>1. 打地鼠</h3>
+              <div class="thumb mole" aria-label="打地鼠遊戲縮圖">
+                <span class="thumb-label">Whac-A-Mole</span>
+              </div>
               <p>
                 這款遊戲主打反應力與專注力，畫面上會隨機冒出地鼠，玩家需要在短時間內點擊命中。
               </p>
@@ -232,6 +313,9 @@
           <article class="card">
             <div>
               <h3>2. 貪吃蛇</h3>
+              <div class="thumb snake" aria-label="貪吃蛇遊戲縮圖">
+                <span class="thumb-label">Snake Game</span>
+              </div>
               <p>
                 玩家透過方向控制讓蛇持續前進，吃到食物後身體會變長，遊戲節奏也會越來越緊湊。
               </p>

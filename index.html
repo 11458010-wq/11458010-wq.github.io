@@ -126,6 +126,10 @@
         animation-delay: 120ms;
       }
 
+      .card:nth-child(3) {
+        animation-delay: 240ms;
+      }
+
       .card h3 {
         margin: 0;
         font-size: 1.12rem;
@@ -193,6 +197,10 @@
         background: linear-gradient(120deg, #b45309, var(--accent-2));
       }
 
+      .card a[data-type="calc"] {
+        background: linear-gradient(120deg, #0f766e, #1d4ed8);
+      }
+
       .card a:hover,
       .card a:focus-visible {
         transform: translateY(-2px);
@@ -241,13 +249,13 @@
         <span class="tag">Portfolio</span>
         <h1>資訊一 李宥叡</h1>
         <p class="intro">
-          你好，我是資訊一的李宥叡。這裡整理了我目前完成的兩個遊戲作品，
-          分別是打地鼠與貪吃蛇。歡迎點擊下方卡片進入遊戲頁面體驗。
+          你好，我是資訊一的李宥叡。這裡整理了我目前完成的三個作品，
+          分別是打地鼠、貪吃蛇，以及工程計算機。歡迎點擊下方卡片進入作品頁面。
         </p>
       </section>
 
       <section class="works" aria-labelledby="works-title">
-        <h2 id="works-title">遊戲作品</h2>
+        <h2 id="works-title">作品集</h2>
         <div class="grid">
           <article class="card">
             <div>
@@ -285,6 +293,26 @@
               </ul>
             </div>
             <a href="2/index.html" data-type="snake">前往貪吃蛇</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>3. 工程計算機</h3>
+              <div class="thumb" aria-label="工程計算機縮圖">
+                <img src="images/engineering-calculator.svg" alt="工程計算機畫面" />
+                <span class="thumb-label">Engineering Calculator</span>
+              </div>
+              <p>
+                這是一款手機版工程計算機，支援基本四則運算與三角函數，
+                可在 DEG 模式直接計算 sin(30) 等角度題目。
+              </p>
+              <ul>
+                <li>核心功能：快速輸入算式，並支援括號與函數計算。</li>
+                <li>重點特色：可切換 DEG/RAD 模式，符合不同計算需求。</li>
+                <li>實用範例：在角度模式下，sin(30) 可得到 0.5。</li>
+              </ul>
+            </div>
+            <a href="3/index.html" data-type="calc">前往工程計算機</a>
           </article>
         </div>
       </section>

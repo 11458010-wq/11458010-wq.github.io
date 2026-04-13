@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>工程計算機</title>
+  <style>
+    :root {
+      --bg-1: #d9f3ff;
+      --bg-2: #eefee7;
+      --panel: rgba(255, 255, 255, 0.86);
+      --line: rgba(16, 36, 54, 0.14);
+      --text: #10243a;
+      --sub: #4a6278;
+      --accent: #0f766e;
+      --accent-2: #1d4ed8;
+      --btn: #1f2937;
+      --btn-func: #0ea5e9;
+      --btn-op: #f59e0b;
+      --btn-eq: #22c55e;
+      --shadow: 0 16px 36px rgba(0, 35, 69, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.9), transparent 30%),
+        radial-gradient(circle at 92% 20%, rgba(147, 197, 253, 0.55), transparent 34%),
+        linear-gradient(150deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .phone {
+      position: relative;
+      width: min(100vw, 430px);
+      min-height: 100dvh;
+      padding: 14px 12px calc(14px + env(safe-area-inset-bottom));
+    }
+
+    .panel {
+      margin-top: max(10px, env(safe-area-inset-top));
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 6vw, 34px);
+      letter-spacing: 0.02em;
+    }
+
+    .sub {
+      margin: 6px 0 12px;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .display {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(226, 245, 255, 0.86);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .expr {
+      min-height: 22px;
+      text-align: right;
+      color: var(--sub);
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .result {
+      min-height: 38px;
+      text-align: right;
+      font-size: clamp(24px, 7vw, 32px);
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .mode {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mode button,
+    .utility button,
+    .keys button {
+      border: 0;
+      font: inherit;
+      color: #fff;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .mode button,
+    .utility button {
+      padding: 8px 10px;
+      background: #334155;
+      font-size: 13px;
+    }
+
+    .mode button.active {
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    }
+
+    .utility {
+      display: flex;
+      gap: 6px;
+    }
+
+    .keys {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .keys button {
+      min-height: 48px;
+      font-size: 18px;
+      font-weight: 700;
+      background: var(--btn);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.22);
+    }
+
+    .keys button.func {
+      background: var(--btn-func);
+    }
+
+    .keys button.op {
+      background: var(--btn-op);
+      color: #18222d;
+    }
+
+    .keys button.equal {
+      background: var(--btn-eq);
+      color: #10291d;
+    }
+
+    .keys button.zero {
+      grid-column: span 2;
+    }
+
+    .hint {
+      margin: 10px 2px 0;
+      color: var(--sub);
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <section class="panel">
+      <h1>工程計算機</h1>
+      <p class="sub">支援四則運算與三角函數。預設是角度模式，例：sin(30) = 0.5。</p>
+
+      <div class="display" aria-live="polite">
+        <div id="expr" class="expr"></div>
+        <div id="result" class="result">0</div>
+      </div>
+
+      <div class="top-row">
+        <div class="mode">
+          <button id="degBtn" class="active" type="button">DEG</button>
+          <button id="radBtn" type="button">RAD</button>
+        </div>
+        <div class="utility">
+          <button id="clearBtn" type="button">AC</button>
+          <button id="delBtn" type="button">DEL</button>
+        </div>
+      </div>
+
+      <div class="keys">
+        <button class="func" data-value="sin(">sin</button>
+        <button class="func" data-value="cos(">cos</button>
+        <button class="func" data-value="tan(">tan</button>
+        <button class="op" data-value="/">÷</button>
+
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button class="op" data-value="*">×</button>
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button class="op" data-value="-">-</button>
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button class="op" data-value="+">+</button>
+
+        <button class="zero" data-value="0">0</button>
+        <button data-value=".">.</button>
+        <button class="equal" id="eqBtn">=</button>
+      </div>
+
+      <p class="hint">可直接輸入：sin(30)、(8+2)*5、cos(60)+1。</p>
+    </section>
+  </main>
+
+  <script>
+    const exprEl = document.getElementById('expr');
+    const resultEl = document.getElementById('result');
+    const degBtn = document.getElementById('degBtn');
+    const radBtn = document.getElementById('radBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const delBtn = document.getElementById('delBtn');
+    const eqBtn = document.getElementById('eqBtn');
+    const keyButtons = document.querySelectorAll('.keys button[data-value]');
+
+    let expression = '';
+    let isDegree = true;
+
+    function updateDisplay() {
+      exprEl.textContent = expression || '輸入算式';
+      if (!expression) {
+        resultEl.textContent = '0';
+      }
+    }
+
+    function formatNumber(num) {
+      if (!Number.isFinite(num)) {
+        return '錯誤';
+      }
+      const rounded = Math.round(num * 1e12) / 1e12;
+      return String(rounded);
+    }
+
+    function toAngle(value) {
+      return isDegree ? (value * Math.PI) / 180 : value;
+    }
+
+    function evaluateExpression(input) {
+      const safe = input.replace(/\s+/g, '');
+      const tokens = [];
+      let i = 0;
+
+      while (i < safe.length) {
+        const ch = safe[i];
+
+        if (/[0-9.]/.test(ch)) {
+          let num = ch;
+          i += 1;
+          while (i < safe.length && /[0-9.]/.test(safe[i])) {
+            num += safe[i];
+            i += 1;
+          }
+          if ((num.match(/\./g) || []).length > 1) {
+            throw new Error('數字格式錯誤');
+          }
+          tokens.push({ type: 'number', value: Number(num) });
+          continue;
+        }
+
+        if (/[a-z]/i.test(ch)) {
+          let name = ch;
+          i += 1;
+          while (i < safe.length && /[a-z]/i.test(safe[i])) {
+            name += safe[i];
+            i += 1;
+          }
+          tokens.push({ type: 'func', value: name.toLowerCase() });
+          continue;
+        }
+
+        if ('+-*/()'.includes(ch)) {
+          tokens.push({ type: 'op', value: ch });
+          i += 1;
+          continue;
+        }
+
+        throw new Error('不支援的符號');
+      }
+
+      let cursor = 0;
+
+      function parseExpression() {
+        let value = parseTerm();
+        while (cursor < tokens.length && ['+', '-'].includes(tokens[cursor].value)) {
+          const op = tokens[cursor].value;
+          cursor += 1;
+          const right = parseTerm();
+          value = op === '+' ? value + right : value - right;
+        }
+        return value;
+      }
+
+      function parseTerm() {
+        let value = parseFactor();
+        while (cursor < tokens.length && ['*', '/'].includes(tokens[cursor].value)) {
+          const op = tokens[cursor].value;
+          cursor += 1;
+          const right = parseFactor();
+          value = op === '*' ? value * right : value / right;
+        }
+        return value;
+      }
+
+      function parseFactor() {
+        if (cursor >= tokens.length) {
+          throw new Error('算式不完整');
+        }
+
+        const token = tokens[cursor];
+
+        if (token.type === 'op' && token.value === '-') {
+          cursor += 1;
+          return -parseFactor();
+        }
+
+        if (token.type === 'number') {
+          cursor += 1;
+          return token.value;
+        }
+
+        if (token.type === 'op' && token.value === '(') {
+          cursor += 1;
+          const value = parseExpression();
+          if (!tokens[cursor] || tokens[cursor].value !== ')') {
+            throw new Error('缺少右括號');
+          }
+          cursor += 1;
+          return value;
+        }
+
+        if (token.type === 'func') {
+          const fn = token.value;
+          cursor += 1;
+          if (!tokens[cursor] || tokens[cursor].value !== '(') {
+            throw new Error('函數缺少括號');
+          }
+          cursor += 1;
+          const inner = parseExpression();
+          if (!tokens[cursor] || tokens[cursor].value !== ')') {
+            throw new Error('函數缺少右括號');
+          }
+          cursor += 1;
+
+          if (fn === 'sin') {
+            return Math.sin(toAngle(inner));
+          }
+          if (fn === 'cos') {
+            return Math.cos(toAngle(inner));
+          }
+          if (fn === 'tan') {
+            return Math.tan(toAngle(inner));
+          }
+          throw new Error('不支援的函數');
+        }
+
+        throw new Error('語法錯誤');
+      }
+
+      const value = parseExpression();
+      if (cursor !== tokens.length) {
+        throw new Error('語法錯誤');
+      }
+      return value;
+    }
+
+    function compute() {
+      if (!expression) {
+        resultEl.textContent = '0';
+        return;
+      }
+      try {
+        const value = evaluateExpression(expression);
+        resultEl.textContent = formatNumber(value);
+      } catch (err) {
+        resultEl.textContent = '錯誤';
+      }
+    }
+
+    keyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        expression += button.dataset.value;
+        updateDisplay();
+      });
+    });
+
+    clearBtn.addEventListener('click', () => {
+      expression = '';
+      updateDisplay();
+    });
+
+    delBtn.addEventListener('click', () => {
+      expression = expression.slice(0, -1);
+      updateDisplay();
+    });
+
+    eqBtn.addEventListener('click', compute);
+
+    degBtn.addEventListener('click', () => {
+      isDegree = true;
+      degBtn.classList.add('active');
+      radBtn.classList.remove('active');
+      compute();
+    });
+
+    radBtn.addEventListener('click', () => {
+      isDegree = false;
+      radBtn.classList.add('active');
+      degBtn.classList.remove('active');
+      compute();
+    });
+
+    updateDisplay();
+    expression = 'sin(30)';
+    updateDisplay();
+    compute();
+  </script>
+</body>
+</html>

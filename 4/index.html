@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gemini 聊天機器人</title>
+  <style>
+    :root {
+      --bg-top: #d6f3ff;
+      --bg-bottom: #fff4d8;
+      --card: rgba(255, 255, 255, 0.86);
+      --line: rgba(12, 42, 60, 0.14);
+      --text: #103043;
+      --sub: #4b6c7d;
+      --accent: #0e7490;
+      --accent-2: #f97316;
+      --accent-soft: rgba(14, 116, 144, 0.14);
+      --bot: #e6fbff;
+      --user: #fff2dc;
+      --danger: #b91c1c;
+      --shadow: 0 18px 36px rgba(4, 36, 55, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.95), transparent 30%),
+        radial-gradient(circle at 94% 18%, rgba(125, 211, 252, 0.6), transparent 34%),
+        linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+      color: var(--text);
+      font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .phone {
+      position: relative;
+      width: min(100vw, 430px);
+      min-height: 100dvh;
+      padding: 14px 12px calc(12px + env(safe-area-inset-bottom));
+    }
+
+    .designer {
+      position: absolute;
+      right: 12px;
+      top: max(12px, env(safe-area-inset-top));
+      z-index: 3;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 18px rgba(8, 24, 46, 0.12);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .panel {
+      margin-top: calc(20px + env(safe-area-inset-top));
+      height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 6.2vw, 34px);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .sub {
+      margin: 6px 0 0;
+      color: var(--sub);
+      font-size: 13px;
+    }
+
+    .api-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .api-row input,
+    .composer textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+    }
+
+    .api-row input {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    .model-chip {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .chat-window {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px;
+      overflow-y: auto;
+      background: rgba(245, 252, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bubble {
+      max-width: 88%;
+      padding: 9px 11px;
+      border-radius: 13px;
+      line-height: 1.5;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid var(--line);
+    }
+
+    .bubble.user {
+      align-self: flex-end;
+      background: var(--user);
+    }
+
+    .bubble.bot {
+      align-self: flex-start;
+      background: var(--bot);
+    }
+
+    .composer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .composer textarea {
+      min-height: 50px;
+      max-height: 120px;
+      resize: vertical;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 18px rgba(14, 116, 144, 0.24);
+      cursor: pointer;
+      min-height: 46px;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--sub);
+      min-height: 18px;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <div class="designer">設計者：資訊一 李宥叡</div>
+
+    <section class="panel">
+      <header>
+        <h1>聊天機器人</h1>
+        <p class="sub">使用 Gemini 2.5 Flash，先輸入 API Key 再送出問題。</p>
+      </header>
+
+      <div class="api-row">
+        <input id="apiKey" type="password" placeholder="輸入 Gemini API Key" autocomplete="off" />
+        <div class="model-chip" aria-label="目前使用模型">gemini-2.5-flash</div>
+      </div>
+
+      <div id="chatWindow" class="chat-window" aria-live="polite">
+        <div class="bubble bot">你好，我是 Gemini 聊天機器人。請先輸入 API Key，再輸入你的問題。</div>
+      </div>
+
+      <div>
+        <div class="composer">
+          <textarea id="questionInput" placeholder="輸入你的問題...（按 Enter 換行，Ctrl+Enter 可送出）"></textarea>
+          <button id="sendBtn" type="button">送出訊息</button>
+        </div>
+        <div id="status" class="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const apiKeyInput = document.getElementById('apiKey');
+    const questionInput = document.getElementById('questionInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const statusEl = document.getElementById('status');
+
+    const MODEL_NAME = 'gemini-2.5-flash';
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.classList.toggle('error', isError);
+    }
+
+    function appendMessage(role, text) {
+      const div = document.createElement('div');
+      div.className = `bubble ${role}`;
+      div.textContent = text;
+      chatWindow.appendChild(div);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    async function askGemini(apiKey, question) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [{ text: question }]
+            }
+          ]
+        })
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        const message = errorBody.error && errorBody.error.message
+          ? errorBody.error.message
+          : `請求失敗（HTTP ${response.status}）`;
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      const answer = data.candidates
+        && data.candidates[0]
+        && data.candidates[0].content
+        && data.candidates[0].content.parts
+        && data.candidates[0].content.parts[0]
+        && data.candidates[0].content.parts[0].text;
+
+      if (!answer) {
+        throw new Error('模型沒有回覆內容，請稍後再試。');
+      }
+
+      return answer;
+    }
+
+    async function handleSend() {
+      const apiKey = apiKeyInput.value.trim();
+      const question = questionInput.value.trim();
+
+      if (!apiKey) {
+        setStatus('請先輸入 Gemini API Key。', true);
+        apiKeyInput.focus();
+        return;
+      }
+
+      if (!question) {
+        setStatus('請輸入問題內容。', true);
+        questionInput.focus();
+        return;
+      }
+
+      appendMessage('user', question);
+      questionInput.value = '';
+      setStatus('Gemini 回覆中...');
+      sendBtn.disabled = true;
+
+      try {
+        const answer = await askGemini(apiKey, question);
+        appendMessage('bot', answer);
+        setStatus('回覆完成。');
+      } catch (error) {
+        appendMessage('bot', `發生錯誤：${error.message}`);
+        setStatus(`錯誤：${error.message}`, true);
+      } finally {
+        sendBtn.disabled = false;
+      }
+    }
+
+    sendBtn.addEventListener('click', handleSend);
+
+    questionInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && event.ctrlKey) {
+        event.preventDefault();
+        handleSend();
+      }
+    });
+  </script>
+</body>
+</html>

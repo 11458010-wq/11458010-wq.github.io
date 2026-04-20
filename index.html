@@ -130,6 +130,10 @@
         animation-delay: 240ms;
       }
 
+      .card:nth-child(4) {
+        animation-delay: 360ms;
+      }
+
       .card h3 {
         margin: 0;
         font-size: 1.12rem;
@@ -201,6 +205,10 @@
         background: linear-gradient(120deg, #0f766e, #1d4ed8);
       }
 
+      .card a[data-type="chat"] {
+        background: linear-gradient(120deg, #0e7490, #ea580c);
+      }
+
       .card a:hover,
       .card a:focus-visible {
         transform: translateY(-2px);
@@ -249,8 +257,8 @@
         <span class="tag">Portfolio</span>
         <h1>資訊一 李宥叡</h1>
         <p class="intro">
-          你好，我是資訊一的李宥叡。這裡整理了我目前完成的三個作品，
-          分別是打地鼠、貪吃蛇，以及工程計算機。歡迎點擊下方卡片進入作品頁面。
+          你好，我是資訊一的李宥叡。這裡整理了我目前完成的四個作品，
+          分別是打地鼠、貪吃蛇、工程計算機，以及 Gemini 聊天機器人。歡迎點擊下方卡片進入作品頁面。
         </p>
       </section>
 
@@ -313,6 +321,26 @@
               </ul>
             </div>
             <a href="3/index.html" data-type="calc">前往工程計算機</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>4. Gemini 聊天機器人</h3>
+              <div class="thumb" aria-label="Gemini 聊天機器人縮圖">
+                <img src="images/gemini-chatbot.svg" alt="Gemini 聊天機器人畫面" />
+                <span class="thumb-label">Gemini 2.5 Flash</span>
+              </div>
+              <p>
+                這是一個手機版聊天機器人頁面，使用者可輸入 Gemini API Key，
+                並透過輸入框送出問題，立即在視窗中接收模型回覆。
+              </p>
+              <ul>
+                <li>核心功能：輸入 API Key、問題欄位、送出按鈕與回覆視窗。</li>
+                <li>模型設定：串接 Gemini 2.5 Flash 進行即時文字對話。</li>
+                <li>介面特色：手機優先設計，版面尺寸與前面作品一致。</li>
+              </ul>
+            </div>
+            <a href="4/index.html" data-type="chat">前往聊天機器人</a>
           </article>
         </div>
       </section>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Gemini 聊天機器人縮圖</title>
+  <desc id="desc">手機介面的聊天機器人示意圖，包含 API Key 欄位與對話泡泡。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7fdff"/>
+      <stop offset="100%" stop-color="#fff8ef"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" rx="28" fill="url(#bg)"/>
+
+  <g opacity="0.18" fill="#ffffff">
+    <circle cx="70" cy="60" r="42"/>
+    <circle cx="580" cy="86" r="56"/>
+    <circle cx="520" cy="300" r="38"/>
+  </g>
+
+  <rect x="184" y="28" width="272" height="304" rx="30" fill="#0f172a"/>
+  <rect x="198" y="44" width="244" height="274" rx="22" fill="url(#screen)"/>
+
+  <rect x="214" y="62" width="164" height="16" rx="8" fill="#cfe6f2"/>
+  <rect x="214" y="86" width="210" height="24" rx="8" fill="#d7eef7"/>
+  <text x="224" y="102" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="11" fill="#21556e">API Key • gemini-2.5-flash</text>
+
+  <rect x="214" y="124" width="150" height="38" rx="14" fill="#fff1de" stroke="#f2c089"/>
+  <text x="228" y="147" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="12" fill="#8b4c12">今天台北天氣？</text>
+
+  <rect x="246" y="172" width="178" height="58" rx="14" fill="#e6f9ff" stroke="#9ed8eb"/>
+  <text x="260" y="194" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="12" fill="#164e63">Gemini 回覆中...</text>
+  <text x="260" y="214" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="11" fill="#275f74">降雨機率 20%，適合外出</text>
+
+  <rect x="214" y="244" width="158" height="26" rx="10" fill="#ffffff" stroke="#d6e5ee"/>
+  <text x="224" y="261" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="11" fill="#5b7481">輸入你的問題...</text>
+
+  <rect x="378" y="244" width="46" height="26" rx="10" fill="#0ea5e9"/>
+  <text x="389" y="261" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="11" fill="#ffffff">送出</text>
+
+  <text x="214" y="292" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="11" fill="#4b6b7b">設計者：資訊一 李宥叡</text>
+</svg>

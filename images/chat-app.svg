@@ -1,0 +1,36 @@
+<svg width="800" height="360" viewBox="0 0 800 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="60" y1="40" x2="740" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.52" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="160" y1="40" x2="620" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="120" y="44" width="560" height="272" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <rect width="800" height="360" rx="32" fill="url(#bg)"/>
+  <circle cx="152" cy="84" r="112" fill="url(#glow)"/>
+  <circle cx="664" cy="286" r="104" fill="url(#glow)"/>
+  <g filter="url(#shadow)">
+    <rect x="170" y="56" width="460" height="248" rx="28" fill="#F8FAFC" fill-opacity="0.98"/>
+    <rect x="196" y="82" width="408" height="22" rx="11" fill="#E2E8F0"/>
+    <rect x="196" y="122" width="220" height="66" rx="18" fill="#0F766E"/>
+    <rect x="384" y="196" width="220" height="66" rx="18" fill="#EA580C"/>
+    <rect x="218" y="145" width="150" height="10" rx="5" fill="#CCFBF1"/>
+    <rect x="218" y="162" width="112" height="10" rx="5" fill="#CCFBF1"/>
+    <rect x="410" y="219" width="140" height="10" rx="5" fill="#FFEDD5"/>
+    <rect x="410" y="236" width="88" height="10" rx="5" fill="#FFEDD5"/>
+    <circle cx="224" cy="231" r="14" fill="#2563EB"/>
+    <circle cx="598" cy="167" r="14" fill="#F59E0B"/>
+    <rect x="206" y="268" width="136" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="350" y="268" width="118" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="478" y="268" width="98" height="14" rx="7" fill="#CBD5E1"/>
+  </g>
+  <text x="220" y="112" fill="#0F172A" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">ntfy 聊天對話窗</text>
+  <text x="220" y="142" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600">HTTPS · Topic · SSE</text>
+</svg>

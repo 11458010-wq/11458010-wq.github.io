@@ -134,6 +134,10 @@
         animation-delay: 360ms;
       }
 
+      .card:nth-child(5) {
+        animation-delay: 480ms;
+      }
+
       .card h3 {
         margin: 0;
         font-size: 1.12rem;
@@ -209,6 +213,10 @@
         background: linear-gradient(120deg, #0e7490, #ea580c);
       }
 
+      .card a[data-type="ntfy"] {
+        background: linear-gradient(120deg, #4338ca, #0ea5e9);
+      }
+
       .card a:hover,
       .card a:focus-visible {
         transform: translateY(-2px);
@@ -258,7 +266,7 @@
         <h1>資訊一 李宥叡</h1>
         <p class="intro">
           你好，我是資訊一的李宥叡。這裡整理了我目前完成的五個作品，
-          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人，以及聊天對話框。歡迎點擊下方卡片進入作品頁面。
+          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人，以及 ntfy 聊天對話窗。歡迎點擊下方卡片進入作品頁面。
         </p>
       </section>
 
@@ -345,22 +353,21 @@
 
           <article class="card">
             <div>
-              <h3>5. 聊天對話框</h3>
-              <div class="thumb" aria-label="聊天對話框縮圖">
-                <img src="images/chat-dialog.svg" alt="聊天對話框畫面" />
-                <span class="thumb-label">Live Chat Dialog</span>
+              <h3>5. ntfy 聊天對話窗</h3>
+              <div class="thumb" aria-label="ntfy 聊天對話窗縮圖">
+                <img src="images/chat-app.svg" alt="ntfy 聊天對話窗畫面" />
+                <span class="thumb-label">ntfy.sh / HTTPS</span>
               </div>
               <p>
-                這是一個功能完整的實時聊天對話框，支援訊息收發與模擬 AI 回應，
-                並整合 ntfy.sh 進行實時通知推送，讓每條訊息都能及時同步。
+                這是一個使用 ntfy.sh 建立的即時聊天對話窗，能夠自行設定 Topic，並透過 HTTPS 發送與接收訊息，送出後會顯示為「宥叡: 內容」。
               </p>
               <ul>
-                <li>核心功能：輸入訊息、即時發送、AI 模擬回應、動畫效果。</li>
-                <li>通知系統：使用 ntfy.sh HTTPS 進行訊息推送，完全免費無限制。</li>
-                <li>設計特色：手機優先介面、清爽現代風格、流暢對話體驗。</li>
+                <li>核心功能：可自訂 Topic，預設值為 drher。</li>
+                <li>連線方式：使用 ntfy.sh 的 SSE 訂閱與 POST 傳送訊息，顯示格式為「宥叡: 訊息」。</li>
+                <li>畫面特色：手機版對話窗設計，適合直接開啟使用。</li>
               </ul>
             </div>
-            <a href="5/index.html" data-type="chat">前往聊天對話框</a>
+            <a href="5/index.html" data-type="ntfy">前往聊天對話窗</a>
           </article>
         </div>
       </section>

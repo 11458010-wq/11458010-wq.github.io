@@ -87,6 +87,57 @@
       opacity: 0.9;
     }
 
+    .channel-config {
+      background: rgba(0, 0, 0, 0.15);
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .channel-config label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+    }
+
+    .channel-config input {
+      flex: 1;
+      min-width: 120px;
+      padding: 0.4rem 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 200ms;
+    }
+
+    .channel-config input:focus {
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .channel-config a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      transition: background 200ms;
+      white-space: nowrap;
+    }
+
+    .channel-config a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
     .chat-container {
       flex: 1;
       overflow-y: auto;
@@ -281,6 +332,19 @@
       <div class="designer">設計者：李宥叡</div>
     </div>
 
+    <div class="channel-config">
+      <label for="channelInput">頻道：</label>
+      <input
+        type="text"
+        id="channelInput"
+        placeholder="輸入頻道名稱"
+        value="drher"
+      />
+      <a id="openChannelLink" href="https://ntfy.sh/drher" target="_blank" title="在新視窗開啟 ntfy.sh">
+        📱 訂閱
+      </a>
+    </div>
+
     <div class="chat-container" id="chatContainer">
       <div class="empty-state">
         <p>👋 歡迎使用聊天對話框</p>
@@ -304,10 +368,22 @@
     const chatContainer = document.getElementById('chatContainer');
     const messageInput = document.getElementById('messageInput');
     const sendBtn = document.getElementById('sendBtn');
+    const channelInput = document.getElementById('channelInput');
+    const openChannelLink = document.getElementById('openChannelLink');
 
     // ntfy.sh 配置
-    const NTFY_TOPIC = 'drher';
-    const NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
+    let NTFY_TOPIC = 'drher';
+    let NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
+
+    // 更新頻道名稱
+    channelInput.addEventListener('input', (e) => {
+      NTFY_TOPIC = e.target.value.trim() || 'drher';
+      NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
+      openChannelLink.href = NTFY_URL;
+    });
+
+    // 初始化連結
+    openChannelLink.href = NTFY_URL;
 
     // 顯示歡迎訊息
     function showWelcome() {
@@ -376,13 +452,9 @@
         const response = await fetch(NTFY_URL, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Title': '宥叡',
           },
-          body: JSON.stringify({
-            title: '宥叡',
-            message: message,
-            timestamp: new Date().toLocaleTimeString('zh-TW')
-          })
+          body: message
         });
 
         if (!response.ok) {

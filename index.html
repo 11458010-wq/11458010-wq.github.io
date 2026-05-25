@@ -138,6 +138,10 @@
         animation-delay: 480ms;
       }
 
+      .card:nth-child(6) {
+        animation-delay: 600ms;
+      }
+
       .card h3 {
         margin: 0;
         font-size: 1.12rem;
@@ -217,6 +221,10 @@
         background: linear-gradient(120deg, #4338ca, #0ea5e9);
       }
 
+      .card a[data-type="cloud"] {
+        background: linear-gradient(120deg, #0f766e, #7c3aed);
+      }
+
       .card a:hover,
       .card a:focus-visible {
         transform: translateY(-2px);
@@ -265,8 +273,8 @@
         <span class="tag">Portfolio</span>
         <h1>資訊一 李宥叡</h1>
         <p class="intro">
-          你好，我是資訊一的李宥叡。這裡整理了我目前完成的五個作品，
-          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人，以及 ntfy 聊天對話窗。歡迎點擊下方卡片進入作品頁面。
+          你好，我是資訊一的李宥叡。這裡整理了我目前完成的六個作品，
+          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人、ntfy 聊天對話窗，以及雲端記事本。歡迎點擊下方卡片進入作品頁面。
         </p>
       </section>
 
@@ -368,6 +376,26 @@
               </ul>
             </div>
             <a href="5/index.html" data-type="ntfy">前往聊天對話窗</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>6. 雲端記事本</h3>
+              <div class="thumb" aria-label="雲端記事本縮圖">
+                <img src="images/cloud-notebook.svg" alt="雲端記事本畫面" />
+                <span class="thumb-label">Google Apps Script</span>
+              </div>
+              <p>
+                這是一個線上使用的雲端記事本，資料直接儲存在 Google 雲端資料夾中，
+                可在手機尺寸下流暢編輯與儲存筆記內容。
+              </p>
+              <ul>
+                <li>使用介紹：直接開啟雲端記事本頁面，即可讀取與編輯記事本.txt。</li>
+                <li>核心特色：以 Google Apps Script 直接存取雲端資料夾，無需額外前端後端拆分。</li>
+                <li>介面設計：參考前面作品的手機版排版，保留清楚的標題、說明與按鈕配置。</li>
+              </ul>
+            </div>
+            <a href="https://script.google.com/macros/s/AKfycbzEKT6nLxO-BYsgI4g-qlymLMmF2KAPjoiycwyDSuZMEPmHSywFWM_0s1PV-cyOVAdN2w/exec" data-type="cloud" target="_blank" rel="noopener">前往雲端記事本</a>
           </article>
         </div>
       </section>

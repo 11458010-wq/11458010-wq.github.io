@@ -1,0 +1,27 @@
+<svg width="800" height="300" viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="20" x2="720" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="220" y1="70" x2="560" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B74FF"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="300" rx="28" fill="url(#bg)"/>
+  <circle cx="620" cy="78" r="44" fill="#14B8A6" fill-opacity="0.18"/>
+  <circle cx="160" cy="214" r="62" fill="#5B74FF" fill-opacity="0.16"/>
+  <path d="M166 111C166 89.4609 183.461 72 205 72H236C248.15 72 259 80.4172 261.9 92.1875C270.951 93.0788 278 100.706 278 110V206C278 216.493 269.493 225 259 225H178C167.507 225 159 216.493 159 206V127C159 118.716 163.275 111.462 169.857 107.335C168.147 108.437 167 109.965 167 111H166Z" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.16"/>
+  <rect x="191" y="95" width="54" height="18" rx="9" fill="url(#accent)"/>
+  <rect x="190" y="126" width="62" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.78"/>
+  <rect x="190" y="145" width="76" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.55"/>
+  <rect x="190" y="164" width="64" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.55"/>
+  <rect x="191" y="188" width="40" height="14" rx="7" fill="#14B8A6" fill-opacity="0.82"/>
+  <path d="M404 212C362.592 212 329 178.408 329 137C329 98.3401 358.34 66.4998 396 63.2521C401.162 37.1248 424.186 17 452 17C484.019 17 510.367 42.1824 512.846 73.6031C545.031 77.5443 570 104.917 570 138C570 175.555 539.555 206 502 206H404Z" fill="#F8FAFC" fill-opacity="0.08" stroke="#CBD5E1" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M389 165L424 132L451 154L489 117" stroke="#A5F3FC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="489" cy="117" r="10" fill="#A5F3FC"/>
+  <rect x="356" y="182" width="130" height="16" rx="8" fill="#E2E8F0" fill-opacity="0.55"/>
+  <text x="620" y="156" fill="#E2E8F0" fill-opacity="0.92" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Cloud Notebook</text>
+  <text x="620" y="192" fill="#CBD5E1" fill-opacity="0.9" font-family="Segoe UI, Arial, sans-serif" font-size="18">Google Apps Script</text>
+</svg>

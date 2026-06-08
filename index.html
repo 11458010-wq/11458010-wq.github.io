@@ -142,6 +142,10 @@
         animation-delay: 600ms;
       }
 
+      .card:nth-child(7) {
+        animation-delay: 720ms;
+      }
+
       .card h3 {
         margin: 0;
         font-size: 1.12rem;
@@ -225,6 +229,10 @@
         background: linear-gradient(120deg, #0f766e, #7c3aed);
       }
 
+      .card a[data-type="quiz"] {
+        background: linear-gradient(120deg, #ff8a00, #ff4d4d);
+      }
+
       .card a:hover,
       .card a:focus-visible {
         transform: translateY(-2px);
@@ -273,8 +281,8 @@
         <span class="tag">Portfolio</span>
         <h1>資訊一 李宥叡</h1>
         <p class="intro">
-          你好，我是資訊一的李宥叡。這裡整理了我目前完成的六個作品，
-          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人、ntfy 聊天對話窗，以及雲端記事本。歡迎點擊下方卡片進入作品頁面。
+          你好，我是資訊一的李宥叡。這裡整理了我目前完成的七個作品，
+          分別是打地鼠、貪吃蛇、工程計算機、Gemini 聊天機器人、ntfy 聊天對話窗、雲端記事本，以及英文單字 GAS 測驗。歡迎點擊下方卡片進入作品頁面。
         </p>
       </section>
 
@@ -396,6 +404,26 @@
               </ul>
             </div>
             <a href="https://script.google.com/macros/s/AKfycbzEKT6nLxO-BYsgI4g-qlymLMmF2KAPjoiycwyDSuZMEPmHSywFWM_0s1PV-cyOVAdN2w/exec" data-type="cloud" target="_blank" rel="noopener">前往雲端記事本</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>7. 英文單字 GAS 測驗</h3>
+              <div class="thumb" aria-label="英文單字測驗縮圖">
+                <img src="images/vocab-quiz.svg" alt="英文單字測驗畫面" />
+                <span class="thumb-label">English Vocabulary Quiz</span>
+              </div>
+              <p>
+                這是一個 Google Apps Script 英文單字測驗，隨機抽取試算表中的 10 題中英文配對題，
+                題目固定用中文發問，選項只提供英文可選，滿分 100 分採四選一方式檢測。
+              </p>
+              <ul>
+                <li>核心功能：從 Google 試算表自動抓取中英單字資料，隨機生成 10 題測驗。</li>
+                <li>出題方式：題目固定中文發問，四個選項皆為英文，使用者選擇對應翻譯。</li>
+                <li>計分方式：每題 10 分，總分 100，頁面會顯示最終分數與答對題數。</li>
+              </ul>
+            </div>
+            <a href="https://script.google.com/macros/s/AKfycbxzz-20K9hyWXtiqg6AL-QfQB15Am6_F1DW13C4d-FvSTx1_l0NwcxpxtU-Qc4Qltzk/exec" data-type="quiz" target="_blank" rel="noopener">前往英文測驗</a>
           </article>
         </div>
       </section>
